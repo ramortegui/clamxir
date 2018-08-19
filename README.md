@@ -14,7 +14,7 @@ by adding `clamxir` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:clamxir, "~> 0.1.2"}
+    {:clamxir, "~> 0.1.3"}
   ]
 end
 ```

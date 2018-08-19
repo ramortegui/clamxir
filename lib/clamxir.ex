@@ -13,11 +13,11 @@ defmodule Clamxir do
 
   ## Examples
 
-  iex> Clamxir.file_exists?("README.md")
-  {:ok, "README.md"}
+      iex> Clamxir.file_exists?("README.md")
+      {:ok, "README.md"}
 
-  iex> Clamxir.file_exists?("NO_FILE.md")
-  {:error, "NO_FILE.md not found."}
+      iex> Clamxir.file_exists?("NO_FILE.md")
+      {:error, "NO_FILE.md not found."}
   """
 
   def file_exists?(path) do
@@ -32,11 +32,11 @@ defmodule Clamxir do
 
   ## Examples
 
-  iex> Clamxir.scanner_exists?(%Clamxir{})
-  true
+      iex> Clamxir.scanner_exists?(%Clamxir{})
+      true
 
-  iex> Clamxir.scanner_exists?(%Clamxir{check: true})
-  true
+      iex> Clamxir.scanner_exists?(%Clamxir{check: true})
+      true
   """
   def scanner_exists?(%Clamxir{check: check} = clamxir_config) do
     case check do
@@ -53,11 +53,11 @@ defmodule Clamxir do
 
   ## Examples
 
-  iex> Clamxir.virus?(%Clamxir{}, "README.md")
-  false
+      iex> Clamxir.virus?(%Clamxir{}, "README.md")
+      false
 
-  iex> Clamxir.virus?(%Clamxir{}, "NOT_FOUND.md")
-  {:error, "NOT_FOUND.md not found."}
+      iex> Clamxir.virus?(%Clamxir{}, "NOT_FOUND.md")
+      {:error, "NOT_FOUND.md not found."}
   """
   def virus?(%Clamxir{} = clamxir_config, path) do
     %{clamxir_config: clamxir_config, path: path}
