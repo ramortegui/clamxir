@@ -1,8 +1,8 @@
 defmodule Clamxir do
   defstruct check: false,
-    daemonize: false,
-    fdpass: false,
-    stream: false
+            daemonize: false,
+            fdpass: false,
+            stream: false
 
   @moduledoc """
   Documentation for Clamxir.
@@ -76,6 +76,7 @@ defmodule Clamxir do
   end
 
   defp check_scanner_presence({:error, _} = status), do: status
+
   defp check_scanner_presence(%{clamxir_config: clamxir_config, path: path}) do
     case check_scanner(clamxir_config) do
       true -> %{clamxir_config: clamxir_config, path: path}
@@ -84,9 +85,9 @@ defmodule Clamxir do
   end
 
   defp check_virus({:error, _} = status), do: status
+
   defp check_virus(%{clamxir_config: clamxir_config, path: path}) do
     run_command(clamxir_config, path)
-
   end
 
   def run_command(clamxir_config, path) do
@@ -96,18 +97,25 @@ defmodule Clamxir do
   end
 
   def create_args(clamxir_config, path) do
-    command_args = []
-                   |> add_fdpass(clamxir_config)
-                   |> add_stream(clamxir_config)
+    command_args =
+      []
+      |> add_fdpass(clamxir_config)
+      |> add_stream(clamxir_config)
+
     command_args ++ [path, "--no-summary"]
   end
 
-  def add_fdpass(command, %Clamxir{fdpass: fdpass, daemonize: daemonize}) when fdpass == daemonize == true,  do: command ++ ["--fdpass"]
-  def add_fdpass(command, _),  do: command
+  def add_fdpass(command, %Clamxir{fdpass: fdpass, daemonize: daemonize})
+      when fdpass == true and daemonize == true,
+      do: command ++ ["--fdpass"]
 
-  def add_stream(command, %Clamxir{stream: stream, daemonize: daemonize}) when stream == daemonize == true,  do: command ++ ["--stream"]
-  def add_stream(command, _),  do: command
+  def add_fdpass(command, _), do: command
 
+  def add_stream(command, %Clamxir{stream: stream, daemonize: daemonize})
+      when stream == true and daemonize == true,
+      do: command ++ ["--stream"]
+
+  def add_stream(command, _), do: command
 
   defp check_scanner(%Clamxir{daemonize: daemonize}) do
     daemonize
@@ -116,10 +124,8 @@ defmodule Clamxir do
     |> check_system_results
   end
 
-
   defp check_system_results({_, 0}), do: true
   defp check_system_results(_), do: false
-
 
   defp check_virus_scann_results({_, 0}), do: false
   defp check_virus_scann_results({message, 2}), do: {:error, message}
