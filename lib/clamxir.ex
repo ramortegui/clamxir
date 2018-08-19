@@ -1,5 +1,6 @@
 defmodule Clamxir do
-  defstruct daemonize: false,
+  defstruct check: false,
+            daemonize: false,
             fdpass: false,
             stream: false
 
@@ -32,6 +33,9 @@ defmodule Clamxir do
   ## Examples
 
     iex> Clamxir.scanner_exists?(%Clamxir{})
+    true
+    
+    iex> Clamxir.scanner_exists?(%Clamxir{check: true})
     true
   """
   def scanner_exists?(%Clamxir{check: check} = clamxir_config) do
