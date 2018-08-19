@@ -90,13 +90,13 @@ defmodule Clamxir do
     run_command(clamxir_config, path)
   end
 
-  def run_command(clamxir_config, path) do
+  defp run_command(clamxir_config, path) do
     clamd_executable_name(clamxir_config.daemonize)
     |> System.cmd(create_args(clamxir_config, path))
     |> check_virus_scann_results()
   end
 
-  def create_args(clamxir_config, path) do
+  defp create_args(clamxir_config, path) do
     command_args =
       []
       |> add_fdpass(clamxir_config)
@@ -105,17 +105,17 @@ defmodule Clamxir do
     command_args ++ [path, "--no-summary"]
   end
 
-  def add_fdpass(command, %Clamxir{fdpass: fdpass, daemonize: daemonize})
+  defp add_fdpass(command, %Clamxir{fdpass: fdpass, daemonize: daemonize})
       when fdpass == true and daemonize == true,
       do: command ++ ["--fdpass"]
 
-  def add_fdpass(command, _), do: command
+  defp add_fdpass(command, _), do: command
 
-  def add_stream(command, %Clamxir{stream: stream, daemonize: daemonize})
+  defp add_stream(command, %Clamxir{stream: stream, daemonize: daemonize})
       when stream == true and daemonize == true,
       do: command ++ ["--stream"]
 
-  def add_stream(command, _), do: command
+  defp add_stream(command, _), do: command
 
   defp check_scanner(%Clamxir{daemonize: daemonize}) do
     daemonize
