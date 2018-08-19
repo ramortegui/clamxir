@@ -14,10 +14,17 @@ by adding `clamxir` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:clamxir, "~> 0.1.0"}
+    {:clamxir, "~> 0.1.2"}
   ]
 end
 ```
+
+## TODO
+
+- Update README of functions
+- Add test for file with malware(just signature)
+- Add sample cases. eg. Phoenix 
+
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
