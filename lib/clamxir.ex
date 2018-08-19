@@ -1,11 +1,6 @@
 defmodule Clamxir do
-  defstruct check: false,
-            daemonize: false,
-            error_clamscan_missing: false,
-            error_file_missing: false,
-            error_file_virus: false,
+  defstruct daemonize: false,
             fdpass: false,
-            silence_output: false,
             stream: false
 
   @moduledoc """
@@ -30,4 +25,35 @@ defmodule Clamxir do
       false -> {:error, "#{path} not found."}
     end
   end
+
+  @doc """
+  Returns a tuple if the scanner exists
+
+  ## Examples
+
+    iex> Clamxir.scanner_exists?(%Clamxir{})
+    true
+  """
+  def scanner_exists?(%Clamxir{check: check} = clamxir_config) do
+    case check do
+      false ->
+        true
+
+      _ ->
+        check_scanner(clamxir_config)
+    end
+  end
+
+  defp check_scanner(%Clamxir{daemonize: daemonized}) do
+    daemonized
+    |> clamd_executable_name()
+    |> System.cmd(["--version", "--quiet"])
+    |> check_system_results
+  end
+
+  defp check_system_results({_, 0}), do: true
+  defp check_system_results(_), do: false
+
+  defp clamd_executable_name(daemonized) when daemonized == true, do: "clamdscan"
+  defp clamd_executable_name(_), do: "clamscan"
 end
