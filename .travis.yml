@@ -1,0 +1,9 @@
+language: elixir
+
+elixir:
+  - '1.7.1'
+otp_release: '21.0.1'
+
+install: 
+ - sudo apt-get install clamav
+ - sudo freshclam
