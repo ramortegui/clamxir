@@ -2,6 +2,9 @@
 
 Database wrapper for clamav based on
 [clamby](https://github.com/kobaltz/clamby)
+
+This package depends of clamd and freshclam.
+
   
 ## Installation
 
