@@ -8,6 +8,8 @@ install:
  - sudo apt-get install clamav
  - sudo freshclam
 
+before_script:
+ - mix local.hex --force
 after_script:
   - MIX_ENV=docs mix deps.get
   - MIX_ENV=docs mix inch.report
