@@ -1,6 +1,4 @@
 # Clamxir [![Build Status](https://travis-ci.org/ramortegui/clamxir.svg?branch=master)](https://travis-ci.org/ramortegui/clamxir)
-[![Inline
-docs](http://inch-ci.org/github/ramortegui/clamxir.svg?branch=master)](http://inch-ci.org/github/ramortegui/clamxir)
 
 Database wrapper for clamav based on
 [clamby](https://github.com/kobaltz/clamby)
