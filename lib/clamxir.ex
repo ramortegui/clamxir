@@ -106,14 +106,14 @@ defmodule Clamxir do
   end
 
   defp add_fdpass(command, %Clamxir{fdpass: fdpass, daemonize: daemonize})
-      when fdpass == true and daemonize == true,
-      do: command ++ ["--fdpass"]
+       when fdpass == true and daemonize == true,
+       do: command ++ ["--fdpass"]
 
   defp add_fdpass(command, _), do: command
 
   defp add_stream(command, %Clamxir{stream: stream, daemonize: daemonize})
-      when stream == true and daemonize == true,
-      do: command ++ ["--stream"]
+       when stream == true and daemonize == true,
+       do: command ++ ["--stream"]
 
   defp add_stream(command, _), do: command
 
