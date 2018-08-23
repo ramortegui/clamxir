@@ -1,7 +1,6 @@
 defmodule Clamxir do
   defstruct check: false,
             daemonize: false,
-            fdpass: false,
             stream: false
 
   @moduledoc """
@@ -99,21 +98,14 @@ defmodule Clamxir do
   defp create_args(clamxir_config, path) do
     command_args =
       []
-      |> add_fdpass(clamxir_config)
       |> add_stream(clamxir_config)
 
     command_args ++ [path, "--no-summary"]
   end
 
-  defp add_fdpass(command, %Clamxir{fdpass: fdpass, daemonize: daemonize})
-      when fdpass == true and daemonize == true,
-      do: command ++ ["--fdpass"]
-
-  defp add_fdpass(command, _), do: command
-
   defp add_stream(command, %Clamxir{stream: stream, daemonize: daemonize})
-      when stream == true and daemonize == true,
-      do: command ++ ["--stream"]
+       when stream == true and daemonize == true,
+       do: command ++ ["--stream"]
 
   defp add_stream(command, _), do: command
 
