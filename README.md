@@ -13,7 +13,7 @@ by adding `clamxir` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:clamxir, "~> 0.1.3"}
+    {:clamxir, "~> 0.1.4"}
   ]
 end
 ```
@@ -50,15 +50,44 @@ Stream true, will pass the argument --stream to clamdscan.
 ```
 
 check if the scanner exists, before try to use it.
-`
+
 ```elixir
   iex> Clamxir.safe?(%Clamxir{check: true}, "/path/file")
 ```
 
+## Integration with Phoenix
+
+1.  Install as dependency
+    mix.exs
+
+    ```elixir
+        {:clamxir, "~> 0.1.4"}
+    ```
+    
+2.  Use in the controller action where the files are uploaded
+
+    ```elixir
+      def upload(conn, params) do
+        file = params["index"]["file"]
+        # Requires to have clamavdscann to work
+        case Clamxir.safe?(%Clamxir{daemonize: true}, file.path) do
+          true -> 
+            # Process the file and ... 
+            conn
+            |> put_flash(:info,  "Created successfully")
+            |> redirect(to: "/") 
+          false -> conn
+            |> put_flash(:error,  "Virus!!")
+           |> redirect(to: "/") 
+        end
+      end
+    ```
+    
+For a working sample please refer to:
+[https://github.com/ramortegui/sample_phoenix_clamxir](https://github.com/ramortegui/sample_phoenix_clamxir)
+
 ## TODO
-
-- Add sample of integration (mix app, and phoenix)
-
+- Add Logger features
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
