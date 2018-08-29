@@ -86,6 +86,9 @@ check if the scanner exists, before try to use it.
 For a working sample please refer to:
 [https://github.com/ramortegui/sample_phoenix_clamxir](https://github.com/ramortegui/sample_phoenix_clamxir)
 
+## TODO
+- Add Logger features
+
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/clamxir](https://hexdocs.pm/clamxir).
