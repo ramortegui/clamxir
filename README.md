@@ -3,7 +3,7 @@
 ClamAV wrapper for elixir based on
 [clamby](https://github.com/kobaltz/clamby)
 
-This package depends of clamav.
+This package depends of clamav.  For installation instructions please see [https://www.clamav.net/documents/installing-clamav](https://www.clamav.net/documents/installing-clamav)
 
 ## Installation
 
