@@ -4,7 +4,7 @@ defmodule Clamxir do
             stream: false
 
   @moduledoc """
-  Documentation for Clamxir.
+  Clamxir is a wrapper for clamav.  It requires to have installed clamav in order to work.  As a suggestion, run the config with the daemonize flag as it will use the daemon instance of clamav.
   """
 
   @doc """
@@ -27,7 +27,9 @@ defmodule Clamxir do
   end
 
   @doc """
-  Returns a tuple if the scanner exists
+
+  Returns true if the check flag of config isn't set. Otherwise will
+  return a boolean if the scanner has been found.
 
   ## Examples
 
@@ -65,6 +67,16 @@ defmodule Clamxir do
     |> check_virus
   end
 
+  @doc """
+  The oppossite of `virus?/2`.
+  ## Examples
+
+      iex> Clamxir.safe?(%Clamxir{}, "README.md")
+      false
+
+      iex> Clamxir.safe?(%Clamxir{}, "NOT_FOUND.md")
+      {:error, "NOT_FOUND.md not found."}
+  """
   def safe?(%Clamxir{} = clamxir_config, path), do: !virus?(clamxir_config, path)
 
   defp check_file_presence(%{clamxir_config: clamxir_config, path: path}) do
