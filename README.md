@@ -15,7 +15,7 @@ The package can be installed by adding `clamxir` to your list of dependencies in
 ```elixir
 def deps do
   [
-    {:clamxir, "~> 0.1.5"}
+    {:clamxir, "~> 0.1.6"}
   ]
 end
 ```
@@ -63,7 +63,7 @@ check if the scanner exists, before try to use it.
     mix.exs
 
     ```elixir
-        {:clamxir, "~> 0.1.5"}
+        {:clamxir, "~> 0.1.6"}
     ```
     
 2.  Use in the controller action where the files are uploaded
