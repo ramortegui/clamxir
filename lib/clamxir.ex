@@ -71,12 +71,17 @@ defmodule Clamxir do
   ## Examples
 
       iex> Clamxir.safe?(%Clamxir{}, "README.md")
-      false
+      true 
 
       iex> Clamxir.safe?(%Clamxir{}, "NOT_FOUND.md")
       {:error, "NOT_FOUND.md not found."}
   """
-  def safe?(%Clamxir{} = clamxir_config, path), do: !virus?(clamxir_config, path)
+  def safe?(%Clamxir{} = clamxir_config, path) do
+    case virus?(clamxir_config, path) do
+      result when is_boolean(result) -> !result
+      error -> error
+    end
+  end
 
   defp check_file_presence(%{clamxir_config: clamxir_config, path: path}) do
     case file_exists?(path) do
