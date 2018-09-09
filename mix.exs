@@ -39,8 +39,7 @@ defmodule Clamxir.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, "~> 0.19", only: :dev},
-      {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test]}
+      {:ex_doc, "~> 0.19", only: :dev}
     ]
   end
 end
