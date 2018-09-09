@@ -18,7 +18,6 @@ defmodule Clamxir do
       iex> Clamxir.file_exists?("NO_FILE.md")
       {:error, "NO_FILE.md not found."}
   """
-
   def file_exists?(path) do
     case File.exists?(path) do
       true -> {:ok, path}
@@ -27,17 +26,16 @@ defmodule Clamxir do
   end
 
   @doc """
-
   Returns true if the check flag of config isn't set. Otherwise will
   return a boolean if the scanner has been found.
 
   ## Examples
 
-      iex> Clamxir.scanner_exists?(%Clamxir{})
-      true
+     iex> Clamxir.scanner_exists?(%Clamxir{})
+     true
 
-      iex> Clamxir.scanner_exists?(%Clamxir{check: true})
-      true
+     iex> Clamxir.scanner_exists?(%Clamxir{check: true})
+     true
   """
   def scanner_exists?(%Clamxir{check: check} = clamxir_config) do
     case check do
@@ -50,7 +48,7 @@ defmodule Clamxir do
   end
 
   @doc """
-  Return boolean with the result if succeded.  Otherwhise, a tuple with {:error, message}
+  Return boolean with the result if succeded.  Otherwise, a tuple with {:error, message}
 
   ## Examples
 
@@ -69,6 +67,7 @@ defmodule Clamxir do
 
   @doc """
   The oppossite of `virus?/2`.
+
   ## Examples
 
       iex> Clamxir.safe?(%Clamxir{}, "README.md")
