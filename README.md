@@ -3,17 +3,19 @@
 ClamAV wrapper for elixir based on
 [clamby](https://github.com/kobaltz/clamby)
 
-This package depends of clamav.  For installation instructions please see [https://www.clamav.net/documents/installing-clamav](https://www.clamav.net/documents/installing-clamav)
+This package depends of clamav installed on your system. Please refer to: [https://www.clamav.net/documents/installing-clamav](https://www.clamav.net/documents/installing-clamav).
+
+As recomendation, use the daemonize flag on the configs, in order to improve
+performance.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `clamxir` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `clamxir` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:clamxir, "~> 0.1.4"}
+    {:clamxir, "~> 0.1.5"}
   ]
 end
 ```
@@ -61,7 +63,7 @@ check if the scanner exists, before try to use it.
     mix.exs
 
     ```elixir
-        {:clamxir, "~> 0.1.4"}
+        {:clamxir, "~> 0.1.5"}
     ```
     
 2.  Use in the controller action where the files are uploaded
@@ -86,10 +88,9 @@ check if the scanner exists, before try to use it.
 For a working sample please refer to:
 [https://github.com/ramortegui/sample_phoenix_clamxir](https://github.com/ramortegui/sample_phoenix_clamxir)
 
+Docs can be found at [https://hexdocs.pm/clamxir](https://hexdocs.pm/clamxir).
+
+
 ## TODO
 - Add Logger features
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/clamxir](https://hexdocs.pm/clamxir).
 
