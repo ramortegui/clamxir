@@ -4,12 +4,18 @@ elixir:
   - '1.7.1'
 otp_release: '21.0.1'
 
-install: 
+install:
  - sudo apt-get install clamav clamav-daemon
  - sudo freshclam
 
 before_script:
  - mix local.hex --force
+
+script:
+  - mix format --check-formatted
+  - mix credo --strict
+  - mix test
+
 after_script:
   - MIX_ENV=docs mix deps.get
   - MIX_ENV=docs mix inch.report
