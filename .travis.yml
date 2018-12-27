@@ -2,7 +2,8 @@ language: elixir
 
 elixir:
   - '1.7.1'
-otp_release: '21.0.1'
+otp_release:
+  - '21.0.1'
 
 install:
  - sudo apt-get install clamav clamav-daemon
@@ -10,6 +11,7 @@ install:
 
 before_script:
  - mix local.hex --force
+ - mix deps.get
 
 script:
   - mix format --check-formatted
