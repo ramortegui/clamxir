@@ -129,12 +129,12 @@ defmodule Clamxir do
   defp check_scanner(%Clamxir{daemonize: daemonize}) do
     daemonize
     |> clamd_executable_name()
-    |> System.cmd(["--version", "--quiet"])
+    |> System.find_executable()
     |> check_system_results
   end
 
-  defp check_system_results({_, 0}), do: true
-  defp check_system_results(_), do: false
+  defp check_system_results(nil), do: false
+  defp check_system_results(path) when is_binary(path), do: true
 
   defp check_virus_scann_results({_, 0}), do: false
   defp check_virus_scann_results({message, 2}), do: {:error, message}
