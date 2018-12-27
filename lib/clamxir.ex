@@ -71,7 +71,7 @@ defmodule Clamxir do
   ## Examples
 
       iex> Clamxir.safe?(%Clamxir{}, "README.md")
-      true 
+      true
 
       iex> Clamxir.safe?(%Clamxir{}, "NOT_FOUND.md")
       {:error, "NOT_FOUND.md not found."}
@@ -106,7 +106,8 @@ defmodule Clamxir do
   end
 
   defp run_command(clamxir_config, path) do
-    clamd_executable_name(clamxir_config.daemonize)
+    clamxir_config.daemonize
+    |> clamd_executable_name()
     |> System.cmd(create_args(clamxir_config, path))
     |> check_virus_scann_results()
   end
