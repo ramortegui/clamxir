@@ -36,22 +36,22 @@ the structure are:
 }
 ```
 
-Set daemonize to true, in order to use one instance of the clamav instead of
-the creation of an instance each time that the scanner is invoke.
-
-Check is a flag to check if the scanner is available.  Set to true in order to
+daemonize is a flag to use one instance of the clamav instead of
+the creation of new instances for each request.
 
 ```elixir
   iex> Clamxir.safe?(%Clamxir{}, "/path/file")
 ```
 
-Stream true, will pass the argument --stream to clamdscan.
+stream will pass the argument --stream to clamdscan, this will help
+to avoid permission issues. 
 
 ```elixir
   iex> Clamxir.safe?(%Clamxir{stream: true}, "/path/file")
 ```
 
-check if the scanner exists, before try to use it.
+check flag will add validation of the scanner availability before try
+to run it.
 
 ```elixir
   iex> Clamxir.safe?(%Clamxir{check: true}, "/path/file")
