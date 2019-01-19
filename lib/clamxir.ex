@@ -52,10 +52,10 @@ defmodule Clamxir do
 
   ## Examples
 
-      iex> Clamxir.virus?(%Clamxir{}, "README.md")
+      iex> Clamxir.virus?(%Clamxir{daemonize: true}, "README.md")
       false
 
-      iex> Clamxir.virus?(%Clamxir{}, "NOT_FOUND.md")
+      iex> Clamxir.virus?(%Clamxir{daemonize: true}, "NOT_FOUND.md")
       {:error, "NOT_FOUND.md not found."}
   """
   def virus?(%Clamxir{} = clamxir_config, path) do
@@ -70,10 +70,10 @@ defmodule Clamxir do
 
   ## Examples
 
-      iex> Clamxir.safe?(%Clamxir{}, "README.md")
+      iex> Clamxir.safe?(%Clamxir{daemonize: true}, "README.md")
       true
 
-      iex> Clamxir.safe?(%Clamxir{}, "NOT_FOUND.md")
+      iex> Clamxir.safe?(%Clamxir{daemonize: true}, "NOT_FOUND.md")
       {:error, "NOT_FOUND.md not found."}
   """
   def safe?(%Clamxir{} = clamxir_config, path) do
