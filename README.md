@@ -15,7 +15,7 @@ The package can be installed by adding `clamxir` to your list of dependencies in
 ```elixir
 def deps do
   [
-    {:clamxir, "~> 0.1.7"}
+    {:clamxir, "~> 0.1.8"}
   ]
 end
 ```
@@ -63,7 +63,7 @@ to run it.
     mix.exs
 
     ```elixir
-        {:clamxir, "~> 0.1.7"}
+        {:clamxir, "~> 0.1.8"}
     ```
     
 2.  Use in the controller action where the files are uploaded
