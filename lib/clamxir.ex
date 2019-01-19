@@ -4,7 +4,7 @@ defmodule Clamxir do
             stream: false
 
   @moduledoc """
-  Clamxir is a wrapper for clamav.  It requires to have installed clamav in order to work.  As a suggestion, run the config with the daemonize flag as it will use the daemon instance of clamav.
+  Clamxir is a wrapper for clamav.  It requires to have installed clamav in order to work.  As a suggestion, run the config with the daemonize flag as it will use the daemon instance of clamav.  Also if you run on permission issues, adding stream flag with help you with it.
   """
 
   @doc """
@@ -55,7 +55,10 @@ defmodule Clamxir do
       iex> Clamxir.virus?(%Clamxir{}, "README.md")
       false
 
-      iex> Clamxir.virus?(%Clamxir{}, "NOT_FOUND.md")
+      iex> Clamxir.virus?(%Clamxir{stream: true, daemonize: true}, "README.md")
+      false
+
+      iex> Clamxir.virus?(%Clamxir{stream: true, daemonize: true}, "NOT_FOUND.md")
       {:error, "NOT_FOUND.md not found."}
   """
   def virus?(%Clamxir{} = clamxir_config, path) do
@@ -70,10 +73,10 @@ defmodule Clamxir do
 
   ## Examples
 
-      iex> Clamxir.safe?(%Clamxir{}, "README.md")
+      iex> Clamxir.safe?(%Clamxir{stream: true, daemonize: true}, "README.md")
       true
 
-      iex> Clamxir.safe?(%Clamxir{}, "NOT_FOUND.md")
+      iex> Clamxir.safe?(%Clamxir{stream: true, daemonize: true}, "NOT_FOUND.md")
       {:error, "NOT_FOUND.md not found."}
   """
   def safe?(%Clamxir{} = clamxir_config, path) do
