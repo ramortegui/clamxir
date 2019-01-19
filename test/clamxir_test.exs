@@ -27,10 +27,10 @@ defmodule ClamxirTest do
     end
 
     test 'check a file with malware running with daemonize' do
-      result_safe = Clamxir.safe?(%Clamxir{daemonize: true}, @path)
+      result_safe = Clamxir.safe?(%Clamxir{stream: true, daemonize: true}, @path)
       assert(result_safe == false, "It's not safe.")
 
-      result_virus = Clamxir.virus?(%Clamxir{daemonize: true}, @path)
+      result_virus = Clamxir.virus?(%Clamxir{stream: true, daemonize: true}, @path)
       assert(result_virus == true, "It's a virus.")
     end
   end
