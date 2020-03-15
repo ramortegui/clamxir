@@ -40,7 +40,7 @@ defmodule Clamxir.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.19", only: :dev},
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
+      {:credo, ">= 1.0.0", only: [:dev, :test], runtime: false}
     ]
   end
 end
