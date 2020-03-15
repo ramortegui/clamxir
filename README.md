@@ -40,21 +40,21 @@ daemonize is a flag to use one instance of the clamav instead of
 the creation of new instances for each request.
 
 ```elixir
-  iex> Clamxir.safe?(%Clamxir{}, "/path/file")
+iex> Clamxir.safe?(%Clamxir{}, "/path/file")
 ```
 
 stream will pass the argument --stream to clamdscan, this will help
 to avoid permission issues. 
 
 ```elixir
-  iex> Clamxir.safe?(%Clamxir{stream: true}, "/path/file")
+iex> Clamxir.safe?(%Clamxir{stream: true}, "/path/file")
 ```
 
 check flag will add validation of the scanner availability before try
 to run it.
 
 ```elixir
-  iex> Clamxir.safe?(%Clamxir{check: true}, "/path/file")
+iex> Clamxir.safe?(%Clamxir{check: true}, "/path/file")
 ```
 
 ## Integration with Phoenix
@@ -62,28 +62,28 @@ to run it.
 1.  Install as dependency
     mix.exs
 
-    ```elixir
-        {:clamxir, "~> 0.1.8"}
-    ```
+```elixir
+  {:clamxir, "~> 0.1.8"}
+```
     
 2.  Use in the controller action where the files are uploaded
 
-    ```elixir
-      def upload(conn, params) do
-        file = params["index"]["file"]
-        # Requires to have clamavdscann to work
-        case Clamxir.safe?(%Clamxir{daemonize: true}, file.path) do
-          true -> 
-            # Process the file and ... 
-            conn
-            |> put_flash(:info,  "Created successfully")
-            |> redirect(to: "/") 
-          false -> conn
-            |> put_flash(:error,  "Virus!!")
-           |> redirect(to: "/") 
-        end
-      end
-    ```
+```elixir
+  def upload(conn, params) do
+    file = params["index"]["file"]
+    # Requires to have clamavdscann to work
+    case Clamxir.safe?(%Clamxir{daemonize: true}, file.path) do
+      true -> 
+        # Process the file and ... 
+        conn
+        |> put_flash(:info,  "Created successfully")
+        |> redirect(to: "/") 
+      false -> conn
+        |> put_flash(:error,  "Virus!!")
+       |> redirect(to: "/") 
+    end
+  end
+```
     
 For a working sample please refer to:
 [https://github.com/ramortegui/sample_phoenix_clamxir](https://github.com/ramortegui/sample_phoenix_clamxir)
