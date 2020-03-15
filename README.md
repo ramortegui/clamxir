@@ -63,26 +63,26 @@ iex> Clamxir.safe?(%Clamxir{check: true}, "/path/file")
     mix.exs
 
 ```elixir
-  {:clamxir, "~> 0.1.8"}
+{:clamxir, "~> 0.1.8"}
 ```
     
 2.  Use in the controller action where the files are uploaded
 
 ```elixir
-  def upload(conn, params) do
-    file = params["index"]["file"]
-    # Requires to have clamavdscann to work
-    case Clamxir.safe?(%Clamxir{daemonize: true}, file.path) do
-      true -> 
-        # Process the file and ... 
-        conn
-        |> put_flash(:info,  "Created successfully")
-        |> redirect(to: "/") 
-      false -> conn
-        |> put_flash(:error,  "Virus!!")
-       |> redirect(to: "/") 
-    end
+def upload(conn, params) do
+  file = params["index"]["file"]
+  # Requires to have clamavdscann to work
+  case Clamxir.safe?(%Clamxir{daemonize: true}, file.path) do
+    true ->
+      # Process the file and ...
+      conn
+      |> put_flash(:info,  "Created successfully")
+      |> redirect(to: "/")
+    false -> conn
+      |> put_flash(:error,  "Virus!!")
+     |> redirect(to: "/")
   end
+end
 ```
     
 For a working sample please refer to:
