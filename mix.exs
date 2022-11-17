@@ -5,7 +5,7 @@ defmodule Clamxir.MixProject do
     [
       app: :clamxir,
       version: "0.1.8",
-      elixir: "~> 1.7.1",
+      elixir: "> 1.7.1",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
